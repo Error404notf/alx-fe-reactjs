@@ -13,7 +13,7 @@ const UserProfile = (props) => {
                 fontSize: '24px',          
                 marginBottom: '10px'
             }}>{props.name}</h2>
-          <p style={{ fontSize: '16px', color: '#333' }}>Age: {props.age}</p>
+          <p style={{ fontSize: '16px', color: '#333' }}>Age: <span style={{ fontWeight: 'bold' }}>{props.age}</span></p>
           <p style={{ 
                 fontSize: '14px', 
                 color: '#555',
