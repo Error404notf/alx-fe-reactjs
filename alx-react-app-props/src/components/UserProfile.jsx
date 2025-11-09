@@ -1,5 +1,5 @@
 import { useContext} from "react";
-import {userContext} from '../App'
+import {UserContext} from '../App'
 const UserProfile = (props) => {
   return (
       <div>
