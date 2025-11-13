@@ -56,14 +56,21 @@ import useRecipeStore from './recipeStore';
 // export default RecipeList;
 
 const RecipeList = () => {
-  const recipes = useRecipeStore((state) => state.recipes);
+  const { recipes, filteredRecipes, searchTerm } = useRecipeStore((state) => ({
+    recipes: state.recipes,
+    filteredRecipes: state.filteredRecipes,
+    searchTerm: state.searchTerm,
+  }));
+
+  const listToDisplay =
+    searchTerm.trim().length > 0 ? filteredRecipes : recipes;
 
   return (
     <div>
-      {recipes.length === 0 ? (
-        <p>No recipes yet. Add one below!</p>
+      {listToDisplay.length === 0 ? (
+        <p>No recipes found.</p>
       ) : (
-        recipes.map((recipe) => (
+        listToDisplay.map((recipe) => (
           <div key={recipe.id}>
             <h3>
               <Link to={`/recipe/${recipe.id}`}>{recipe.title}</Link>
