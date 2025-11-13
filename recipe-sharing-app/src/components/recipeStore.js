@@ -55,16 +55,21 @@ import { persist } from 'zustand/middleware';
 export const useRecipeStore = create(
   persist(
     (set, get) => ({
+      // State
       recipes: [],
       searchTerm: '',
       filteredRecipes: [],
+      favorites: [],
+      recommendations: [],
 
+      // Recipe actions
       addRecipe: (newRecipe) =>
         set((state) => ({ recipes: [...state.recipes, newRecipe] })),
 
       deleteRecipe: (id) =>
         set((state) => ({
           recipes: state.recipes.filter((recipe) => recipe.id !== id),
+          favorites: state.favorites.filter((fid) => fid !== id),
         })),
 
       updateRecipe: (updatedRecipe) =>
@@ -74,9 +79,10 @@ export const useRecipeStore = create(
           ),
         })),
 
+      // Search actions
       setSearchTerm: (term) => {
         set({ searchTerm: term });
-        get().filterRecipes(); // trigger filtering when search term changes
+        get().filterRecipes();
       },
 
       filterRecipes: () => {
@@ -86,7 +92,28 @@ export const useRecipeStore = create(
         );
         set({ filteredRecipes: filtered });
       },
+
+      // Favorites actions
+      addFavorite: (recipeId) =>
+        set((state) => ({ favorites: [...state.favorites, recipeId] })),
+
+      removeFavorite: (recipeId) =>
+        set((state) => ({
+          favorites: state.favorites.filter((id) => id !== recipeId),
+        })),
+
+      // Recommendations
+      generateRecommendations: () =>
+        set((state) => {
+          const recommended = state.recipes
+            .filter((r) => !state.favorites.includes(r.id))
+            .sort(() => 0.5 - Math.random())
+            .slice(0, 3);
+          return { recommendations: recommended };
+        }),
     }),
-    { name: 'recipe-storage' } // persist data in localStorage
+    {
+      name: 'recipe-storage', // localStorage key
+    }
   )
 );
