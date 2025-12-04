@@ -14,6 +14,12 @@ function HomePage() {
 
   return (
     <div className="max-w-4xl mx-auto p-6">
+      <Link
+  to="/add-recipe"
+  className="block w-fit mx-auto mt-6 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+>
+  Add New Recipe
+</Link>
       <h1 className="text-4xl font-bold text-center text-blue-700">
         Recipe Sharing Platform
       </h1>
@@ -38,6 +44,7 @@ function HomePage() {
                 </div>
               </div>
             </Link>
+            
           ))
         )}
       </div>
