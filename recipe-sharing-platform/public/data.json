@@ -1,0 +1,45 @@
+[
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta",
+      "2 large eggs",
+      "50g grated Parmesan",
+      "Black pepper"
+    ],
+    "instructions": "1. Cook spaghetti. 2. Fry pancetta. 3. Beat eggs and mix with cheese. 4. Combine all with pasta. 5. Serve with pepper."
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "Chunks of grilled chicken cooked in a smooth, buttery & creamy tomato gravy.",
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "500g chicken breast",
+      "1 cup yogurt",
+      "2 tbsp tikka masala paste",
+      "1 onion",
+      "1 cup tomato puree",
+      "1/2 cup cream"
+    ],
+    "instructions": "1. Marinate chicken with yogurt and tikka paste. 2. Cook onions. 3. Add tomato puree and cream. 4. Add chicken and simmer until cooked."
+  },
+  {
+    "id": 3,
+    "title": "Avocado Toast Deluxe",
+    "summary": "Creamy avocado on toasted sourdough with chili flakes and olive oil.",
+    "image": "https://via.placeholder.com/150",
+    "ingredients": [
+      "2 slices sourdough bread",
+      "1 ripe avocado",
+      "Chili flakes",
+      "Olive oil",
+      "Salt"
+    ],
+    "instructions": "1. Toast bread. 2. Mash avocado with salt. 3. Spread on toast. 4. Drizzle olive oil and sprinkle chili flakes."
+  }
+]
