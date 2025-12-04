@@ -7,20 +7,30 @@ export default function AddRecipeForm() {
 
   const [errors, setErrors] = useState({});
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  
+  const validate = () => {
     const validationErrors = {};
 
     if (!title.trim()) validationErrors.title = "Title is required.";
     if (!ingredients.trim()) validationErrors.ingredients = "Ingredients are required.";
     if (!steps.trim()) validationErrors.steps = "Preparation steps are required.";
 
-    // Example extra rule: At least 2 ingredients
-    const ingredientsList = ingredients.split("\n").filter((item) => item.trim() !== "");
+    // Ensure at least two ingredients
+    const ingredientsList = ingredients
+      .split("\n")
+      .filter((item) => item.trim() !== "");
+
     if (ingredientsList.length < 2) {
       validationErrors.ingredients = "Include at least two ingredients.";
     }
 
+    return { validationErrors, ingredientsList };
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const { validationErrors, ingredientsList } = validate();
     setErrors(validationErrors);
 
     if (Object.keys(validationErrors).length === 0) {
@@ -30,7 +40,6 @@ export default function AddRecipeForm() {
         steps,
       });
 
-      // clear form
       setTitle("");
       setIngredients("");
       setSteps("");
@@ -45,7 +54,6 @@ export default function AddRecipeForm() {
     >
       <h2 className="text-2xl font-bold text-gray-800">Add New Recipe</h2>
 
-      {/* Title */}
       <div>
         <label className="block font-medium mb-1">Recipe Title</label>
         <input
@@ -57,7 +65,6 @@ export default function AddRecipeForm() {
         {errors.title && <p className="text-red-500 text-sm">{errors.title}</p>}
       </div>
 
-      {/* Ingredients */}
       <div>
         <label className="block font-medium mb-1">Ingredients</label>
         <textarea
@@ -71,7 +78,6 @@ export default function AddRecipeForm() {
         )}
       </div>
 
-      {/* Steps */}
       <div>
         <label className="block font-medium mb-1">Preparation Steps</label>
         <textarea
@@ -79,7 +85,9 @@ export default function AddRecipeForm() {
           value={steps}
           onChange={(e) => setSteps(e.target.value)}
         />
-        {errors.steps && <p className="text-red-500 text-sm">{errors.steps}</p>}
+        {errors.steps && (
+          <p className="text-red-500 text-sm">{errors.steps}</p>
+        )}
       </div>
 
       <button
