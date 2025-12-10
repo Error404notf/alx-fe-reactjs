@@ -6,13 +6,13 @@ const fetchPosts = async () => {
 };
 
 function PostsComponent() {
-  const { data, isError, isLoading, refetch } = useQuery({
+  const { data, error, isError, isLoading, refetch } = useQuery({
     queryKey: ["posts"],
-    queryFn: fetchPosts,
+    queryFn: fetchPosts
   });
 
   if (isLoading) return <p>Loading posts...</p>;
-  if (isError) return <p>Error loading posts…</p>;
+  if (error || isError) return <p>Error loading posts…</p>;
 
   return (
     <div style={{ padding: "20px" }}>
