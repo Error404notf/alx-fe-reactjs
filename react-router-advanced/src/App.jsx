@@ -6,7 +6,7 @@ import ProfileDetails from "./pages/ProfileDetails";
 import ProfileSettings from "./pages/ProfileSettings";
 import User from "./pages/User";
 import Login from "./pages/Login";
-
+import BlogPost from "./components/BlogPost";
 import ProtectedRoute from "./ProtectedRoute";
 
 function App() {
@@ -32,6 +32,8 @@ function App() {
 
         {/* DYNAMIC */}
         <Route path="/user/:userId" element={<User />} />
+        <Route path="/blog/:id" element={<BlogPost />} />
+
 
       </Routes>
     </BrowserRouter>
