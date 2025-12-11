@@ -31,8 +31,9 @@ function App() {
         </Route>
 
         {/* DYNAMIC */}
-        <Route path="/user/:userId" element={<User />} />
         <Route path="/blog/:id" element={<BlogPost />} />
+        <Route path="/user/:userId" element={<User />} />
+       
 
 
       </Routes>
