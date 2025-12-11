@@ -7,7 +7,7 @@ import ProfileSettings from "./pages/ProfileSettings";
 import User from "./pages/User";
 import Login from "./pages/Login";
 import BlogPost from "./components/BlogPost";
-import ProtectedRoute from "./ProtectedRoute";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 function App() {
   return (
@@ -19,7 +19,7 @@ function App() {
 
         {/* PROTECTED ROUTE */}
         <Route
-          path="/profile"
+          path="/profile/*"
           element={
             <ProtectedRoute>
               <Profile />
