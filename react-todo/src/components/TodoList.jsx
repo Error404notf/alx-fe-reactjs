@@ -1,4 +1,5 @@
 import { useState } from "react";
+import AddTodoForm from "./AddTodoForm";
 
 export default function TodoList() {
   const [todos, setTodos] = useState([
@@ -6,6 +7,15 @@ export default function TodoList() {
     { id: 2, text: "Practice Routing", completed: true },
     { id: 3, text: "Study React Query", completed: false },
   ]);
+
+  const addTodo = (text) => {
+    const newTodo = {
+      id: Date.now(),
+      text,
+      completed: false,
+    };
+    setTodos((prev) => [...prev, newTodo]);
+  };
 
   const toggleTodo = (id) => {
     setTodos((prev) =>
@@ -22,6 +32,9 @@ export default function TodoList() {
   return (
     <div>
       <h2>My Todo List</h2>
+
+      <AddTodoForm onAddTodo={addTodo} />
+
       <ul>
         {todos.map((todo) => (
           <li
@@ -33,6 +46,7 @@ export default function TodoList() {
             }}
           >
             {todo.text}
+
             <button
               onClick={(e) => {
                 e.stopPropagation();
