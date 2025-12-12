@@ -31,19 +31,10 @@ describe('TodoList Component', () => {
     render(<TodoList />);
     const todoItem = screen.getByText('Learn React');
 
-    // Check initial state (not completed)
     expect(todoItem).not.toHaveStyle('text-decoration: line-through');
-
-    // Click to toggle
     fireEvent.click(todoItem);
-
-    // Check completed state
     expect(todoItem).toHaveStyle('text-decoration: line-through');
-
-    // Click again to toggle back
     fireEvent.click(todoItem);
-
-    // Check not completed state again
     expect(todoItem).not.toHaveStyle('text-decoration: line-through');
   });
 
@@ -52,11 +43,9 @@ describe('TodoList Component', () => {
     const todoItem = screen.getByText('Learn React');
     expect(todoItem).toBeInTheDocument();
 
-    // Find and click the delete button for this todo
     const deleteButtons = screen.getAllByText('Delete');
     fireEvent.click(deleteButtons[0]);
 
-    // Verify the todo is removed
     expect(screen.queryByText('Learn React')).not.toBeInTheDocument();
   });
 
@@ -64,14 +53,11 @@ describe('TodoList Component', () => {
     render(<TodoList />);
     const button = screen.getByText('Add Todo');
     
-    // Get initial todo count
     const initialTodos = screen.getAllByRole('listitem');
     const initialCount = initialTodos.length;
 
-    // Try to add empty todo
     fireEvent.click(button);
 
-    // Verify count hasn't changed
     const currentTodos = screen.getAllByRole('listitem');
     expect(currentTodos.length).toBe(initialCount);
   });
